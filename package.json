@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsup",
-    "start:server": "node external",
+    "start:server": "node external-service/index.js",
     "invoke": "node app",
     "test": "vitest"
   },
