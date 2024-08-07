@@ -80,3 +80,22 @@ To run all tests, run the command `npm run test` from the project root.
 Test configuration is inside the [package.json](./package.json).
 
 If you are using TypeScript, [TS Auto Mock](https://typescript-tdd.github.io/ts-auto-mock/) is included which allows you to create mock data from TypeScript interfaces. You don't have to use it, but it might be useful.
+
+## Solution
+
+The solution is coded in TypeScript and consists of a Lambda function that processes Kinesis stream events. The function filters for `booking_completed` events, transforms them to match the required JSON schema, and publishes them to an external system via a RESTful API endpoint. The key components of the solution include:
+
+- **Event Parsing**: Each Kinesis stream record is decoded and parsed from Base64 JSON.
+
+- **Event Filtering**: The function checks the event type and processes only `booking_completed` events.
+
+- **Data Transformation**: The event data is transformed to fit the JSON schema required by the external system.
+
+- **Validation**: The transformed data is validated against the JSON schema using `jsonschema`.
+
+- **Publishing**: Valid events are published to the external system using Axios for HTTP POST requests.
+
+- **Error Handling**: The function logs errors related to JSON parsing, missing data, validation failures, and network issues.
+
+- **Testing**: The test suite uses Vitest to mock dependencies and verify that the function behaves correctly under various conditions, achieving 100% test coverage.
+
